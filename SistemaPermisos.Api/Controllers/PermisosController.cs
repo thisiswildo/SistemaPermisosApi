@@ -49,7 +49,7 @@ namespace SistemaPermisos.Api.Controllers
             _context.Permisos.Add(new Permiso
             {
                 ApellidosEmpleado = permiso.ApellidosEmpleado.Trim(),
-                FechaPermiso = DateTime.Now,
+                FechaPermiso = permiso.FechaPermiso,
                 NombreEmpleado = permiso.NombreEmpleado.Trim(),
                 TipoPermisoId = permiso.TipoPermisoId
             });
