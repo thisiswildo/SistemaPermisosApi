@@ -1,4 +1,6 @@
 *.vs
+*.csproj
+*.csproj.user
 bin
 obj
 PublishProfiles
