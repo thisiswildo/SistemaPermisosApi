@@ -1,0 +1,12 @@
+*.vs
+bin
+obj
+PublishProfiles
+SistemaPermisos.Publish
+SistemaPermisos/Properties
+wwwroot
+
+# Archivos de Seguridad
+appsettings.json
+appsettings.development.json
+appsettings.production.json
