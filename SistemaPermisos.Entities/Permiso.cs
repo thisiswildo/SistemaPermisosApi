@@ -25,6 +25,6 @@ namespace SistemaPermisos.Entities
         public DateTime FechaPermiso { get; set; }
 
 
-        public TipoPermiso TipoPermiso { get; set; }
+        public virtual TipoPermiso TipoPermiso { get; set; }
     }
 }
