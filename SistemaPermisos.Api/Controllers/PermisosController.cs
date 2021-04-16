@@ -22,25 +22,41 @@ namespace SistemaPermisos.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Permiso>>> GetPermisos()
+        public async Task<ActionResult> GetPermisos()
         {
-            return await _context.Permisos
+            return Ok(await _context.Permisos
                 .AsNoTracking()
-                .ToListAsync();
+                .Select(permiso => new 
+                {
+                    permiso.ApellidosEmpleado,
+                    permiso.FechaPermiso,
+                    permiso.Id,
+                    permiso.NombreEmpleado,
+                    permiso.TipoPermisoId
+                })
+                .ToListAsync());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Permiso>> GetPermiso(int id)
+        public async Task<ActionResult> GetPermiso(int id)
         {
             var permiso = await _context
                 .Permisos
                 .AsNoTracking()
                 .Where(permiso => permiso.Id == id)
+                .Select(permiso => new
+                {
+                    permiso.ApellidosEmpleado,
+                    permiso.FechaPermiso,
+                    permiso.Id,
+                    permiso.NombreEmpleado,
+                    permiso.TipoPermisoId
+                })
                 .FirstOrDefaultAsync();
 
             if (permiso == null) return NotFound();
 
-            return permiso;
+            return Ok(permiso);
         }
 
         [HttpPost]

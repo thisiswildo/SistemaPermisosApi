@@ -14,7 +14,7 @@ namespace SistemaPermisos.Api.Controllers
     [ApiController]
     public class TiposPermisosController : ControllerBase
     {
-        public ApplicationDbContext _context { get; set; }
+        private readonly ApplicationDbContext _context;
 
         public TiposPermisosController(ApplicationDbContext context)
         {
@@ -24,19 +24,32 @@ namespace SistemaPermisos.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TipoPermiso>>> GetTiposPermisos()
         {
-            return await _context.TiposPermisos
-                .ToListAsync();
+            return Ok(await _context.TiposPermisos
+                .AsNoTracking()
+                .Select(tipoPermiso => new 
+                {
+                    tipoPermiso.Id,
+                    tipoPermiso.Descripcion
+                })
+                .ToListAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<TipoPermiso>> GetTipoPermiso(int id)
         {
-            var permiso = await _context.TiposPermisos
-                .FirstOrDefaultAsync(permiso => permiso.Id == id);
+            var tipoPermiso = await _context.TiposPermisos
+                .AsNoTracking()
+                .Where(tipoPermiso => tipoPermiso.Id == id)
+                .Select(tipoPermiso => new
+                {
+                    tipoPermiso.Id,
+                    tipoPermiso.Descripcion
+                })
+                .FirstOrDefaultAsync();
 
-            if (permiso == null) return NotFound();
+            if (tipoPermiso == null) return NotFound();
 
-            return permiso;
+            return Ok(tipoPermiso);
         }
     }
 }
