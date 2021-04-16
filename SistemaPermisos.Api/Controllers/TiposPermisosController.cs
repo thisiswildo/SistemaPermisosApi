@@ -27,5 +27,16 @@ namespace SistemaPermisos.Api.Controllers
             return await _context.TiposPermisos
                 .ToListAsync();
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TipoPermiso>> GetTipoPermiso(int id)
+        {
+            var permiso = await _context.TiposPermisos
+                .FirstOrDefaultAsync(permiso => permiso.Id == id);
+
+            if (permiso == null) return NotFound();
+
+            return permiso;
+        }
     }
 }
