@@ -12,7 +12,7 @@ namespace SistemaPermisos.Entities
 
         [Required]
         [StringLength(100)]
-        public int Descripcion { get; set; }
+        public string Descripcion { get; set; }
 
 
         public ICollection<Permiso> Permisos { get; set; }
