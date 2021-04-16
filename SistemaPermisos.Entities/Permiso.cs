@@ -19,10 +19,10 @@ namespace SistemaPermisos.Entities
         public string ApellidosEmpleado { get; set; }
 
         [Required]
-        public int TipoPermisoId { get; set; }
+        public int? TipoPermisoId { get; set; }
 
         [Required]
-        public DateTime FechaPermiso { get; set; }
+        public DateTime? FechaPermiso { get; set; }
 
 
         public virtual TipoPermiso TipoPermiso { get; set; }
