@@ -32,7 +32,8 @@ namespace SistemaPermisos.Api.Controllers
                     permiso.FechaPermiso,
                     permiso.Id,
                     permiso.NombreEmpleado,
-                    permiso.TipoPermisoId
+                    permiso.TipoPermisoId,
+                    TipoPermisoDescripcion = permiso.TipoPermiso.Descripcion
                 })
                 .ToListAsync());
         }
