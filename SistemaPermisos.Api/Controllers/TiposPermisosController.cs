@@ -26,6 +26,10 @@ namespace SistemaPermisos.Api.Controllers
         {
             return Ok(await _context.TiposPermisos
                 .AsNoTracking()
+                // We are not supposed to share our raw data model,
+                // so we only select the properties that we wanna shared,
+                // also we should create a Data Transfer Object (DTO) to resolve this
+                // but for this test is fine
                 .Select(tipoPermiso => new 
                 {
                     tipoPermiso.Id,
@@ -40,6 +44,10 @@ namespace SistemaPermisos.Api.Controllers
             var tipoPermiso = await _context.TiposPermisos
                 .AsNoTracking()
                 .Where(tipoPermiso => tipoPermiso.Id == id)
+                // We are not supposed to share our raw data model,
+                // so we only select the properties that we wanna shared,
+                // also we should create a Data Transfer Object (DTO) to resolve this
+                // but for this test is fine
                 .Select(tipoPermiso => new
                 {
                     tipoPermiso.Id,
