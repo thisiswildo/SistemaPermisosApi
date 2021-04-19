@@ -42,6 +42,12 @@ namespace SistemaPermisos.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(options => options
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithExposedHeaders("http://localhost:4200"));
+
             app.UseRouting();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
